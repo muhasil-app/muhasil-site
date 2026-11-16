@@ -134,6 +134,30 @@ section{scroll-margin-top:72px}
 .card h3{font-size:20px}
 .card p{color:var(--ink-2);margin-top:8px;font-size:16px}
 
+
+/* Deployment modes */
+.modes{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:640px){.modes{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1080px){.modes{grid-template-columns:repeat(4,1fr)}}
+.mode{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px 22px;transition:transform .25s,box-shadow .25s}
+.mode:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.mode .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--wine);color:var(--gold);margin-bottom:14px}
+.mode .ic svg{width:26px;height:26px}
+.mode h3{font-size:19px}
+.mode p{color:var(--ink-2);font-size:15.5px;margin-top:6px}
+.mode .who{margin-top:12px;font-size:14px;color:var(--wine);font-weight:700}
+.badge{position:absolute;top:20px;inset-inline-end:20px;font-size:12.5px;font-weight:700;padding:2px 12px;border-radius:999px}
+.badge.off{background:#E8F6EF;color:var(--ok)}
+.badge.on{background:#EAF2FF;color:#1F5BB8}
+.assure{margin-top:22px;display:grid;gap:14px;align-items:center;background:linear-gradient(135deg,var(--wine-dd),var(--wine));color:#fff;border-radius:20px;padding:22px 24px}
+@media(min-width:860px){.assure{grid-template-columns:auto 1fr auto}}
+.assure .ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(242,193,78,.16);color:var(--gold)}
+.assure .ic svg{width:26px;height:26px}
+.assure h3{font-size:19px}
+.assure p{color:rgba(255,255,255,.78);font-size:15.5px;margin-top:2px}
+.assure .chips{display:flex;flex-wrap:wrap;gap:8px}
+.assure .chips span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:4px 14px;font-size:14px;font-weight:700}
+
 /* Journey */
 .journey{display:grid;gap:14px;grid-template-columns:1fr;counter-reset:s;position:relative}
 @media(min-width:900px){.journey{grid-template-columns:repeat(5,1fr)}}
@@ -253,6 +277,7 @@ footer a:hover{color:#fff}
     <nav class="nav" aria-label="الأقسام">
       <a href="#features" data-i="nav.features">المميزات</a>
       <a href="#screens" data-i="nav.screens">من داخل البرنامج</a>
+      <a href="#deploy" data-i="nav.deploy">طرق التشغيل</a>
       <a href="#editions" data-i="nav.editions">الإصدارات</a>
       <a href="#faq" data-i="nav.faq">أسئلة شائعة</a>
     </nav>
@@ -266,6 +291,7 @@ footer a:hover{color:#fff}
 <div class="drawer" id="drawer">
   <a href="#features" data-i="nav.features">المميزات</a>
   <a href="#screens" data-i="nav.screens">من داخل البرنامج</a>
+  <a href="#deploy" data-i="nav.deploy">طرق التشغيل</a>
   <a href="#editions" data-i="nav.editions">الإصدارات</a>
   <a href="#faq" data-i="nav.faq">أسئلة شائعة</a>
   <a class="btn btn-gold" href="#download" data-i="nav.download">حمّل مجاناً</a>
@@ -296,7 +322,7 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <ul>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 20h.01"/><path d="M3 3l18 18"/></svg><span data-i="strip.1">يعمل بدون إنترنت</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-i="strip.2">على جهاز أو شبكة الشركة</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-i="strip.2">على جهازك أو سيرفر الشركة</span></li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3v6h-6"/></svg><span data-i="strip.3">نسخة احتياطية يومية تلقائية</span></li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg><span data-i="strip.4">واجهة عربية وإنجليزية</span></li>
     </ul>
@@ -324,7 +350,28 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section class="sec alt">
+<section class="sec alt" id="deploy">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="kicker" data-i="dp.k">طرق التشغيل</span>
+      <h2 data-i="dp.h">يعمل أينما كانت شركتك</h2>
+      <p data-i="dp.p">نفس البرنامج ونفس البيانات، سواء كان عندك جهاز واحد أو سيرفر يخدم كل الفروع. وتنتقل من طريقة لأخرى متى كبرت شركتك، دون أن تبدأ من جديد.</p>
+    </div>
+    <div class="modes">
+      <article class="mode rv"><span class="badge off" data-i="dp.off">بدون إنترنت</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3 data-i="m1.h">على جهاز واحد</h3><p data-i="m1.p">ثبّته وابدأ العمل في دقائق. مناسب للمكتب الصغير أو لصاحب الشركة وحده.</p><p class="who" data-i="m1.w">للبداية السريعة</p></article>
+      <article class="mode rv"><span class="badge off" data-i="dp.off">بدون إنترنت</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="16" y="16" width="6" height="6" rx="1"/><path d="M12 8v4M5 16v-2h14v2"/></svg></div><h3 data-i="m2.h">على شبكة المكتب</h3><p data-i="m2.p">جهاز واحد يعمل خادماً، وكل الموظفين يدخلون من متصفح أجهزتهم دون تثبيت أي شيء.</p><p class="who" data-i="m2.w">لفريق في مكتب واحد</p></article>
+      <article class="mode rv"><span class="badge off" data-i="dp.both">بإنترنت أو بدونه</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="18" height="7" rx="1.5"/><path d="M7 6.5h.01M7 17.5h.01M11 6.5h6M11 17.5h6"/></svg></div><h3 data-i="m3.h">على سيرفر الشركة</h3><p data-i="m3.p">على سيرفر ويندوز أو لينكس داخل شركتك أو في مركز بيانات، يخدم الإدارة والفروع من قاعدة بيانات واحدة.</p><p class="who" data-i="m3.w">للشركات والفروع المتعددة</p></article>
+      <article class="mode rv"><span class="badge on" data-i="dp.on">أونلاين</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><h3 data-i="m4.h">من أي مكان</h3><p data-i="m4.p">دخول آمن من خارج المكتب للمدير والمحصلين الميدانيين والفروع البعيدة، من الحاسوب أو الهاتف.</p><p class="who" data-i="m4.w">للعمل الميداني والإدارة عن بُعد</p></article>
+    </div>
+    <div class="assure rv">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div><h3 data-i="as.h">انقطع الإنترنت؟ العمل لا يتوقف</h3><p data-i="as.p">البرنامج وقاعدة بياناته عندك، لا على سحابة غيرك. فيستمر العمل داخل الشركة كالمعتاد، ويعود الدخول من الخارج تلقائياً عند رجوع الاتصال.</p></div>
+      <div class="chips"><span data-i="as.1">بياناتك عندك</span><span data-i="as.2">دخول مشفر</span><span data-i="as.3">نسخ احتياطي يومي</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
   <div class="wrap">
     <div class="head rv">
       <span class="kicker" data-i="jr.k">رحلة الملف</span>
@@ -506,7 +553,8 @@ const EDITIONS = [
 
 const FAQ = [
   ['هل التحميل مجاني؟','Is the download free?','نعم. حمّل البرنامج وجرّبه كاملاً بكل أقسامه 30 يوماً، ثم فعّله بترخيص الإصدار الذي يناسبك.','Yes. Download it and try every module for 30 days, then activate it with a license for the edition that suits you.'],
-  ['هل يحتاج إنترنت؟','Does it need the internet?','لا. البرنامج يعمل كاملاً على جهازك أو شبكة شركتك. الإنترنت مطلوب فقط للتفعيل الأونلاين أو المساعد الذكي.','No. It runs fully on your computer or office network. The internet is only needed for online activation or the AI assistant.'],
+  ['هل يحتاج إنترنت؟','Does it need the internet?','لا. يعمل كاملاً بدون إنترنت على جهازك أو شبكة شركتك. وإن أردت فتحه من خارج المكتب، يعمل أونلاين أيضاً على سيرفر الشركة بدخول آمن.','No. It runs fully offline on your computer or office network. If you want access from outside the office, it also runs online on your company server with secure access.'],
+  ['هل يمكن تشغيله على سيرفر الشركة؟','Can it run on our company server?','نعم. ثبّته على سيرفر ويندوز، أو شغّله على سيرفر لينكس، داخل شركتك أو في مركز بيانات. ويدخل الموظفون والفروع من المتصفح.','Yes. Install it on a Windows server or run it on a Linux server, in your office or a data centre. Staff and branches sign in from a browser.'],
   ['كيف يدخل الموظفون من أجهزتهم؟','How do staff use it from their own computers?','عند التثبيت فعّل السماح لأجهزة الشبكة، ثم يفتح كل موظف المتصفح على عنوان الجهاز. لا يُثبَّت شيء على أجهزتهم.','Allow network access during setup, then each employee opens the server address in a browser. Nothing is installed on their machines.'],
   ['ماذا يحدث لبياناتي عند الترقية؟','What happens to my data when I upgrade?','شغّل ملف الإصدار الأحدث فوق القديم. تبقى البيانات كما هي، ويأخذ البرنامج نسخة احتياطية قبل تحديث قاعدة البيانات.','Run the newer installer over the old one. Your data stays, and a backup is taken before the database is updated.'],
   ['هل يمكن نقل البرنامج لجهاز جديد؟','Can I move it to a new computer?','نعم. ثبّت البرنامج على الجهاز الجديد، ثم استعد آخر نسخة احتياطية من شاشة النسخ الاحتياطية.','Yes. Install it on the new computer, then restore your latest backup from the Backups screen.'],
@@ -515,11 +563,11 @@ const FAQ = [
 
 /* English strings; Arabic lives in the HTML. */
 const EN = {
-  'brand':'Muhasil','nav.features':'Features','nav.screens':'Inside the app','nav.editions':'Editions','nav.faq':'FAQ','nav.download':'Free download','nav.menu':'Menu',
+  'brand':'Muhasil','nav.features':'Features','nav.deploy':'Deployment','nav.screens':'Inside the app','nav.editions':'Editions','nav.faq':'FAQ','nav.download':'Free download','nav.menu':'Menu',
   'hero.pill':'For third-party collection agencies','hero.title':'Collections and their accounting<br><em>in one program</em>',
   'hero.lead':'From receiving a creditor’s portfolio to remitting the money and issuing your commission invoice. Debtor files, collectors, promises, receipts and accounting, all connected and working offline.',
   'hero.cta1':'Download free','hero.cta2':'See the screens','hero.meta':'Full 30-day trial · Windows · Arabic & English','hero.f1':'Collected this month','hero.f2':'Receipt with verification code','hero.f2b':'Issued and posted',
-  'strip.1':'Works offline','strip.2':'On one PC or the office network','strip.3':'Automatic daily backup','strip.4':'Arabic and English interface',
+  'strip.1':'Works offline','strip.2':'On your PC or company server','strip.3':'Automatic daily backup','strip.4':'Arabic and English interface',
   'feat.k':'Features','feat.h':'Built for how collection agencies work','feat.p':'Not a generic accounting package with collections bolted on. A collections system first, with full accounting behind it.',
   'f1.h':'Debtor files and portfolios','f1.p':'Creditors, their portfolios and debtor files, with direct Excel import using templates you save once.',
   'f2.h':'Smart assignment to collectors','f2.p':'Manual or automatic assignment by region and workload, with a board showing each collector’s load and results.',
@@ -530,6 +578,14 @@ const EN = {
   'f7.h':'Collector targets and commissions','f7.p':'Set a monthly target per collector, track progress and calculate their commission automatically.',
   'f8.h':'Full accounting behind every move','f8.p':'Chart of accounts, automatic entries, trial balance, profit and loss, balance sheet and bank reconciliation.',
   'f9.h':'Team-based permissions','f9.p':'Collectors see their own files, team leads their team, managers everyone. A separate permission per screen.',
+  'dp.k':'Deployment','dp.h':'Runs wherever your company is','dp.p':'The same program and the same data, whether you have one computer or a server serving every branch. Move from one setup to another as you grow, without starting over.',
+  'dp.off':'Offline','dp.both':'Online or offline','dp.on':'Online',
+  'm1.h':'On one computer','m1.p':'Install it and start working in minutes. Right for a small office or an owner working alone.','m1.w':'For a quick start',
+  'm2.h':'On the office network','m2.p':'One machine acts as the server and every employee signs in from their own browser, with nothing to install.','m2.w':'For a team in one office',
+  'm3.h':'On your company server','m3.p':'On a Windows or Linux server in your office or a data centre, serving management and branches from one database.','m3.w':'For companies with branches',
+  'm4.h':'From anywhere','m4.p':'Secure access from outside the office for managers, field collectors and remote branches, on a computer or phone.','m4.w':'For field work and remote management',
+  'as.h':'Internet down? Work carries on','as.p':'The program and its database live with you, not on someone else’s cloud. Work inside the company continues as usual, and outside access comes back by itself when the connection returns.',
+  'as.1':'Your data stays with you','as.2':'Encrypted access','as.3':'Daily backup',
   'jr.k':'The file’s journey','jr.h':'From portfolio to remittance','jr.p':'Each step hands over to the next, so no file or amount is lost between departments.',
   'j1.h':'Receive','j1.p':'Import the creditor’s files from Excel in minutes.','j2.h':'Assign','j2.p':'To collectors, by hand or by workload.','j3.h':'Follow up','j3.p':'Calls, visits and payment promises with alerts.','j4.h':'Collect','j4.p':'A verified receipt and an entry posted automatically.','j5.h':'Remit and invoice','j5.p':'The creditor’s net, your commission invoice and their report.',
   'sc.k':'Inside the app','sc.h':'Clear screens for every role','sc.p':'Real screenshots of the program with demo data.','sc.zoom':'Click to enlarge',
