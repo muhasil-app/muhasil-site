@@ -250,6 +250,15 @@ details p{color:var(--ink-2);padding-bottom:18px}
 .contact{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
 .contact .soon{color:var(--ink-2);background:var(--bg-2);border:1px dashed #DCC3CB;border-radius:14px;padding:14px 20px}
 
+.ccard{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px 20px;box-shadow:var(--shadow);max-width:100%;flex-wrap:wrap;justify-content:center}
+.ccard .ic{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--wine);color:var(--gold)}
+.ccard .ic svg{width:26px;height:26px}
+.ccard small{display:block;color:var(--ink-2);font-size:14px}
+.ccard a.addr{display:block;direction:ltr;unicode-bidi:isolate;font-size:clamp(17px,4.6vw,21px);font-weight:700;color:var(--wine);word-break:break-all}
+.ccard a.addr:hover{text-decoration:underline;text-underline-offset:4px}
+.ccard .acts{display:flex;gap:8px}
+.ccard .btn{padding:9px 18px;font-size:15px}
+
 /* Footer */
 footer{background:var(--wine-dd);color:rgba(255,255,255,.7);padding:40px 0;font-size:15px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
@@ -603,10 +612,10 @@ const EN = {
   's1.h':'Run the installer','s1.p':'Pick a language, and allow network access if staff will use it from their own computers.',
   's2.h':'Create your company','s2.p':'The program opens in your browser and asks for the company name and admin account. One minute.',
   's3.h':'Import and start','s3.p':'Upload the creditor’s Excel file, assign it to collectors and start following up right away.',
-  'fq.k':'FAQ','fq.h':'Before you start','ct.k':'Contact','ct.h':'Happy to answer your questions','ct.p':'A quote, a trial with your team, or help with installation.','ct.soon':'Contact details coming soon.','ct.wa':'WhatsApp','ct.mail':'Email',
+  'fq.k':'FAQ','fq.h':'Before you start','ct.k':'Contact','ct.h':'Happy to answer your questions','ct.p':'A quote, a trial with your team, or help with installation.','ct.soon':'Contact details coming soon.','ct.wa':'WhatsApp','ct.mail':'Email','ct.send':'Send an email','ct.copy':'Copy address','ct.copied':'Copied',
   'ft.c':'All rights reserved'
 };
-const AR_TEXT = {'ct.wa':'واتساب','ct.mail':'البريد الإلكتروني'};
+const AR_TEXT = {'ct.wa':'واتساب','ct.mail':'البريد الإلكتروني','ct.send':'أرسل رسالة','ct.copy':'نسخ العنوان','ct.copied':'تم النسخ'};
 
 /* ── Language ─────────────────────────────────────────────────────── */
 const nodes = [...document.querySelectorAll('[data-i],[data-i-html]')];
@@ -698,8 +707,13 @@ function buildContact(){
   const box = document.getElementById('contactBox');
   const items = [];
   if (CONFIG.whatsapp) items.push(`<a class="btn btn-wine" href="https://wa.me/${encodeURIComponent(CONFIG.whatsapp)}" target="_blank" rel="noopener">${t('ct.wa')}</a>`);
-  if (CONFIG.email) items.push(`<a class="btn btn-line" href="mailto:${CONFIG.email}">${t('ct.mail')}</a>`);
+  if (CONFIG.email) items.push(`<div class="ccard"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>${t('ct.mail')}</small><a class="addr" href="mailto:${CONFIG.email}">${CONFIG.email}</a></div><div class="acts"><a class="btn btn-wine" href="mailto:${CONFIG.email}">${t('ct.send')}</a><button class="btn btn-line" type="button" id="copyMail">${t('ct.copy')}</button></div></div>`);
   if (items.length) box.innerHTML = items.join('');
+  const cp = document.getElementById('copyMail');
+  if (cp) cp.addEventListener('click', () => {
+    const done = () => { cp.textContent = t('ct.copied'); setTimeout(() => { cp.textContent = t('ct.copy'); }, 1800); };
+    try { navigator.clipboard.writeText(CONFIG.email).then(done, () => {}); } catch (e) {}
+  });
 }
 
 /* ── Download: latest release from the public repository ─────────── */
